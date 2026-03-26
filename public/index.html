@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Join Chat</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.join-container{
+background:white;
+padding:50px;
+border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,0.3);
+animation:fadeIn 0.5s ease-in;
+max-width:450px;
+width:90%;
+}
+
+.join-container h2{
+text-align:center;
+background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+font-size:32px;
+margin-bottom:30px;
+}
+
+.form-group{
+margin-bottom:25px;
+}
+
+.form-group input{
+width:100%;
+padding:15px 20px;
+border:2px solid #e0e0e0;
+border-radius:10px;
+font-size:16px;
+outline:none;
+transition:all 0.3s ease;
+}
+
+.form-group input:focus{
+border-color:#667eea;
+box-shadow:0 0 0 3px rgba(102,126,234,0.1);
+}
+
+.submit-btn{
+width:100%;
+padding:15px;
+background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+font-weight:600;
+cursor:pointer;
+transition:all 0.3s ease;
+box-shadow:0 4px 15px rgba(102,126,234,0.3);
+}
+
+.submit-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 20px rgba(102,126,234,0.4);
+}
+</style>
+</head>
+
+<body>
+
+<div class="join-container">
+<h2>Join Chat Room</h2>
+
+<div class="form-group">
+<input id="username" placeholder="Enter username">
+</div>
+<div class="form-group">
+<input id="room" placeholder="Enter room name">
+</div>
+
+<button onclick="join()" class="submit-btn">Join</button>
+</div>
+
+<script>
+
+function join(){
+
+const username = document.getElementById("username").value;
+const room = document.getElementById("room").value;
+
+localStorage.setItem("username", username);
+localStorage.setItem("room", room);
+
+window.location = "chat.html";
+
+}
+
+</script>
+
+</body>
+</html>

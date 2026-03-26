@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chat</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LEFT SIDEBAR -->
+<div class="sidebar">
+
+<div class="sidebar-header">
+<img id="userProfilePic" class="header-avatar-img" src="https://via.placeholder.com/50" alt="Profile">
+<div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+<div class="header-username" id="currentUsername"></div>
+<div style="display:flex;gap:8px;">
+<button onclick="openProfileUpload()" class="edit-profile-btn">✏️ Edit Profile</button>
+<button onclick="logout()" class="logout-btn-small">🚪 Logout</button>
+</div>
+</div>
+</div>
+
+<!-- Search Bar -->
+<div class="search-container">
+<input type="text" id="searchInput" placeholder="Search or start new chat" oninput="filterUsers()">
+</div>
+
+<!-- Users List -->
+<div id="users" class="users"></div>
+
+</div>
+
+<!-- CHAT AREA -->
+<div class="chat-area">
+
+<div class="chat-header" id="emptyState" style="display:none;">
+<span>No chat selected</span>
+</div>
+
+<div class="chat-header" id="chatHeader">
+<img id="chatAvatar" class="chat-avatar-img" src="https://via.placeholder.com/40" alt="User">
+<div>
+<div class="chat-username" id="chatUser">Select a user</div>
+<div class="chat-status" id="chatStatus"></div>
+</div>
+<div class="chat-actions">
+<button onclick="viewContact()" class="action-btn" title="View Contact">👤</button>
+</div>
+</div>
+
+<div id="chat-box" class="chat-box"></div>
+
+<div class="chat-input">
+
+<input id="message" placeholder="Type a message">
+
+<button onclick="toggleEmojiPicker()" class="emoji-btn" title="Add Emoji">😀</button>
+
+<div id="emojiPicker" class="emoji-picker"></div>
+
+<button onclick="sendDocument()" class="action-btn attachment-btn" title="Send Document">📎</button>
+<input type="file" id="documentInput" accept="image/*,.pdf,.doc,.docx,.txt" style="display:none;" onchange="handleDocumentUpload()">
+
+<button onclick="send()" class="send-btn">Send</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Profile Upload Modal -->
+<div id="profileModal" class="modal">
+<div class="modal-content">
+<button class="modal-close-btn" onclick="closeProfileModal()">&times;</button>
+<h3>Upload Profile Picture</h3>
+<input type="file" id="profileInput" accept="image/*" onchange="previewProfile()">
+<img id="profilePreview" class="profile-preview">
+<div class="modal-buttons">
+<button onclick="uploadProfile()" class="upload-btn">Upload</button>
+<button onclick="closeProfileModal()" class="cancel-btn">Cancel</button>
+</div>
+</div>
+</div>
+
+<!-- View Contact Modal -->
+<div id="contactModal" class="modal">
+<div class="modal-content contact-modal">
+<img id="contactAvatar" class="contact-avatar" src="https://via.placeholder.com/150" alt="Contact">
+<h3 id="contactName"></h3>
+<p id="contactStatus" class="contact-status-text"></p>
+<div class="contact-actions-modal">
+<button onclick="closeContactModal()" class="cancel-btn">Close</button>
+</div>
+</div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
